@@ -609,6 +609,12 @@ h4 {
     url("../../media/pexels-phalansheeshev-17504475.jpg");
 }
 
+.associates-page-hero::before {
+  background-image:
+    linear-gradient(90deg, rgba(10, 22, 40, 0.93) 0%, rgba(10, 22, 40, 0.82) 44%, rgba(10, 22, 40, 0.6) 100%),
+    url("../../media/pexels-tomfisk-3856438.jpg");
+}
+
 .contact-page-hero::before {
   background:
     linear-gradient(90deg, rgba(10, 22, 40, 0.92) 0%, rgba(10, 22, 40, 0.8) 42%, rgba(10, 22, 40, 0.62) 100%),
