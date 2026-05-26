@@ -886,6 +886,11 @@ h4 {
   align-items: center;
 }
 
+.split-grid > *,
+.product-shell > * {
+  min-width: 0;
+}
+
 .about-intro-split {
   align-items: stretch;
 }
@@ -1599,6 +1604,16 @@ h4 {
 
 .contact-map-card iframe {
   min-height: 26rem;
+}
+
+@media (max-width: 767.98px) {
+  .product-media,
+  .compliance-intro-media {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    justify-self: stretch;
+  }
 }
 
 .map-card-footer {
