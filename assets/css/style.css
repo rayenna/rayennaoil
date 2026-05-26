@@ -694,8 +694,11 @@ h4 {
 .media-card img,
 .market-media img,
 .product-media img {
+  display: block;
   width: 100%;
   height: 100%;
+  position: absolute;
+  inset: 0;
   object-fit: cover;
 }
 
@@ -1042,41 +1045,139 @@ h4 {
 }
 
 .product-media {
-  min-height: 20rem;
-  border-radius: var(--radius-md);
+  position: relative;
+  min-height: clamp(18.5rem, 58vw, 24rem);
+  aspect-ratio: 5 / 4;
+  border: 1px solid rgba(10, 22, 40, 0.08);
+  border-radius: calc(var(--radius-md) + 2px);
   overflow: hidden;
-  box-shadow: 0 16px 36px rgba(6, 14, 28, 0.16);
+  background: linear-gradient(160deg, rgba(10, 22, 40, 0.08), rgba(10, 22, 40, 0.02));
+  box-shadow: 0 24px 54px rgba(6, 14, 28, 0.18);
+}
+
+.product-media::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(10, 22, 40, 0.05) 0%, rgba(10, 22, 40, 0) 42%, rgba(10, 22, 40, 0.18) 100%);
+  pointer-events: none;
+}
+
+.product-media::after {
+  content: "";
+  position: absolute;
+  left: 1.2rem;
+  right: 1.2rem;
+  bottom: 1.1rem;
+  z-index: 1;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(201, 162, 39, 0.88), rgba(201, 162, 39, 0));
+  pointer-events: none;
 }
 
 .product-media--tall {
-  min-height: 26rem;
+  min-height: clamp(18.5rem, 58vw, 24rem);
+}
+
+.product-media--bitumen {
+  min-height: clamp(18.5rem, 58vw, 24rem);
+  aspect-ratio: 5 / 4;
+}
+
+.product-media--petrochem {
+  min-height: clamp(18.5rem, 58vw, 24rem);
+  aspect-ratio: 5 / 4;
+}
+
+.product-media--tall img {
+  object-position: center;
+}
+
+.product-media--diesel img {
+  object-position: center 56%;
+}
+
+.product-media--lubricants img {
+  object-position: center 44%;
+}
+
+.product-media--bitumen img {
+  object-position: center 52%;
+}
+
+.product-media--petrochem img {
+  object-position: center 48%;
+}
+
+.product-media img {
+  transform: scale(1.01);
+  transition: transform 0.6s ease;
+}
+
+.product-shell:hover .product-media img,
+.product-shell:focus-within .product-media img {
+  transform: scale(1.04);
 }
 
 .product-shell {
   position: relative;
+  gap: 1.4rem;
 }
 
 .product-detail-card {
   position: relative;
-  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-height: 100%;
+  padding: clamp(1.6rem, 3vw, 2.2rem);
   border: 1px solid rgba(10, 22, 40, 0.08);
-  border-radius: var(--radius-md);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(245, 245, 243, 0.9));
-  box-shadow: 0 18px 38px rgba(6, 14, 28, 0.08);
+  border-radius: calc(var(--radius-md) + 2px);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.99), rgba(245, 245, 243, 0.92));
+  box-shadow: 0 22px 46px rgba(6, 14, 28, 0.08);
+  isolation: isolate;
+}
+
+.product-detail-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 4px;
+  background: linear-gradient(90deg, rgba(201, 162, 39, 0.95), rgba(201, 162, 39, 0.14));
+}
+
+.product-detail-card::after {
+  content: "";
+  position: absolute;
+  right: -3.5rem;
+  bottom: -4.75rem;
+  z-index: -1;
+  width: 11rem;
+  height: 11rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201, 162, 39, 0.14), transparent 72%);
+  pointer-events: none;
 }
 
 .product-shell .product-detail-card {
-  margin-top: -2rem;
+  margin-top: -1.5rem;
 }
 
 .product-kicker {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  margin-bottom: 0.9rem;
+  margin-bottom: 0.1rem;
 }
 
 .product-kicker .eyebrow {
+  margin-bottom: 0;
+}
+
+.product-detail-card h2,
+.product-detail-card p {
   margin-bottom: 0;
 }
 
@@ -1097,7 +1198,7 @@ h4 {
   display: flex;
   flex-wrap: wrap;
   gap: 0.65rem;
-  margin-bottom: 1.1rem;
+  margin-bottom: 0;
 }
 
 .product-meta span {
@@ -1113,13 +1214,14 @@ h4 {
 }
 
 .product-shell .btn {
-  margin-top: 0.25rem;
+  margin-top: auto;
+  width: fit-content;
 }
 
 .product-specs {
   display: grid;
   gap: 0.7rem;
-  margin: 1.25rem 0 1.5rem;
+  margin: 0.2rem 0 1.35rem;
 }
 
 .product-specs li {
@@ -1142,6 +1244,27 @@ h4 {
 .compliance-intro,
 .note-box {
   position: relative;
+}
+
+.compliance-intro {
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.compliance-intro-copy {
+  max-width: none;
+  margin-bottom: 0;
+}
+
+.compliance-intro-media {
+  position: relative;
+  min-height: clamp(16rem, 42vw, 20rem);
+  aspect-ratio: 16 / 11;
+}
+
+.compliance-intro-media img {
+  object-position: center;
 }
 
 .note-box {
@@ -1174,13 +1297,20 @@ h4 {
 
 .market-media {
   display: grid;
-  grid-template-rows: minmax(0, 1fr) auto;
-  min-height: 21rem;
+  grid-template-rows: auto auto;
+  min-height: 0;
   overflow: hidden;
   border: 1px solid rgba(10, 22, 40, 0.08);
   border-radius: var(--radius-md);
   background: var(--color-white);
   box-shadow: 0 16px 34px rgba(6, 14, 28, 0.2);
+}
+
+.market-media img {
+  position: static;
+  inset: auto;
+  height: auto;
+  aspect-ratio: 3 / 2;
 }
 
 .market-copy-card {
@@ -1616,8 +1746,8 @@ h4 {
   .product-shell {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1.5rem;
-    align-items: center;
+    gap: 1.75rem;
+    align-items: stretch;
   }
 
   .product-shell.reverse .product-media {
@@ -1630,6 +1760,18 @@ h4 {
 
   .page-hero-grid {
     padding: 4rem 0;
+  }
+
+  .product-media,
+  .product-media--tall,
+  .product-media--bitumen,
+  .product-media--petrochem {
+    min-height: clamp(22rem, 40vw, 26rem);
+    aspect-ratio: auto;
+  }
+
+  .product-shell .product-detail-card {
+    margin-top: 0;
   }
 
   .form-grid {
@@ -1675,6 +1817,15 @@ h4 {
   .market-section-inner {
     grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
     gap: 2rem;
+  }
+
+  .compliance-intro {
+    grid-template-columns: minmax(0, 0.94fr) minmax(0, 1.06fr);
+    gap: 2rem;
+  }
+
+  .compliance-intro-media {
+    min-height: clamp(19rem, 30vw, 23rem);
   }
 
   .market-copy-card {
@@ -1787,13 +1938,13 @@ h4 {
 
   .product-shell {
     display: grid;
-    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
-    gap: 2rem;
-    align-items: center;
+    grid-template-columns: minmax(0, 0.96fr) minmax(0, 1.04fr);
+    gap: 2.3rem;
+    align-items: stretch;
   }
 
   .product-shell.reverse {
-    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    grid-template-columns: minmax(0, 1.04fr) minmax(0, 0.96fr);
   }
 
   .product-shell.reverse .product-media {
@@ -1806,6 +1957,14 @@ h4 {
 
   .product-shell .product-detail-card {
     margin-top: 0;
+    min-height: clamp(23.5rem, 30vw, 27rem);
+  }
+
+  .product-media,
+  .product-media--tall,
+  .product-media--bitumen,
+  .product-media--petrochem {
+    min-height: clamp(23.5rem, 30vw, 27rem);
   }
 
   .market-section-dark .market-media {

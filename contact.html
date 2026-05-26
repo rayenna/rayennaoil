@@ -194,13 +194,9 @@
                 method="POST"
                 class="form-grid"
                 data-enquiry-form
+                data-form-redirect="thank-you.html"
               >
-                <input type="hidden" name="_subject" value="Rayenna Oil Enquiry" />
-                <input
-                  type="hidden"
-                  name="_next"
-                  value="https://rayennaoil.com/thank-you.html"
-                />
+                <input type="hidden" name="subject" value="Rayenna Oil Enquiry" />
 
                 <div class="field-group">
                   <label for="full-name">Full Name</label>
@@ -252,7 +248,7 @@
 
                 <div class="field-full">
                   <button class="btn btn-primary" type="submit">Submit Enquiry</button>
-                  <p class="form-note text-muted">
+                  <p class="form-note text-muted" data-form-feedback aria-live="polite">
                     All enquiries are subject to KYC and compliance screening. We typically
                     respond within 2 business days.
                   </p>

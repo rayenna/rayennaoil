@@ -5,9 +5,25 @@ document.addEventListener("DOMContentLoaded", function () {
   const navLinks = document.querySelectorAll("[data-nav-link]");
   const enquiryForm = document.querySelector("[data-enquiry-form]");
   const successMessage = document.querySelector("[data-success-message]");
+  const formFeedback = enquiryForm ? enquiryForm.querySelector("[data-form-feedback]") : null;
+  const submitButton = enquiryForm
+    ? enquiryForm.querySelector('button[type="submit"]')
+    : null;
   const counters = document.querySelectorAll("[data-counter]");
   const currentPage = window.location.pathname.split("/").pop() || "index.html";
   const activePage = currentPage === "thank-you.html" ? "contact.html" : currentPage;
+  const formRedirectUrl = enquiryForm
+    ? enquiryForm.dataset.formRedirect || "thank-you.html"
+    : "thank-you.html";
+
+  function setFormFeedback(message, isError) {
+    if (!formFeedback) {
+      return;
+    }
+
+    formFeedback.textContent = message;
+    formFeedback.classList.toggle("text-muted", !isError);
+  }
 
   function updateHeaderState() {
     if (!siteHeader) {
@@ -122,6 +138,60 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       enquiryForm.reset();
+    });
+  } else if (enquiryForm) {
+    enquiryForm.addEventListener("submit", async function (event) {
+      event.preventDefault();
+
+      const defaultButtonLabel = submitButton ? submitButton.textContent : "";
+      if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.textContent = "Sending...";
+      }
+
+      setFormFeedback("Sending your enquiry...", false);
+
+      try {
+        const response = await fetch(enquiryForm.action, {
+          method: enquiryForm.method,
+          body: new FormData(enquiryForm),
+          headers: {
+            Accept: "application/json",
+          },
+        });
+
+        let responseData = null;
+        const contentType = response.headers.get("content-type") || "";
+        if (contentType.includes("application/json")) {
+          responseData = await response.json();
+        }
+
+        if (!response.ok) {
+          const errorMessage =
+            responseData && Array.isArray(responseData.errors) && responseData.errors.length > 0
+              ? responseData.errors.map(function (error) {
+                  return error.message;
+                }).join(" ")
+              : "There was a problem submitting your enquiry. Please try again.";
+
+          throw new Error(errorMessage);
+        }
+
+        enquiryForm.reset();
+        window.location.href = formRedirectUrl;
+      } catch (error) {
+        setFormFeedback(
+          error instanceof Error
+            ? error.message
+            : "There was a problem submitting your enquiry. Please try again.",
+          true
+        );
+      } finally {
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.textContent = defaultButtonLabel;
+        }
+      }
     });
   }
 
