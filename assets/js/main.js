@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const successMessage = document.querySelector("[data-success-message]");
   const counters = document.querySelectorAll("[data-counter]");
   const currentPage = window.location.pathname.split("/").pop() || "index.html";
+  const activePage = currentPage === "thank-you.html" ? "contact.html" : currentPage;
 
   function updateHeaderState() {
     if (!siteHeader) {
@@ -20,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
     navLinks.forEach(function (link) {
       const target = link.getAttribute("href");
       const matchesIndex = currentPage === "" && target === "index.html";
-      const matchesPage = target === currentPage;
+      const matchesPage = target === activePage;
 
       link.classList.toggle("is-active", matchesIndex || matchesPage);
       if (matchesIndex || matchesPage) {
@@ -105,12 +106,6 @@ document.addEventListener("DOMContentLoaded", function () {
     revealItems.forEach(function (item) {
       item.classList.add("is-visible");
     });
-  }
-
-  if (window.location.search.includes("sent=true") && successMessage) {
-    successMessage.classList.add("is-visible");
-    successMessage.textContent =
-      "Your enquiry has been submitted successfully. Our team will review it and respond within 2 business days.";
   }
 
   if (enquiryForm && enquiryForm.getAttribute("action") === "#") {
