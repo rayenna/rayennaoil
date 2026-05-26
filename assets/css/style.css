@@ -630,6 +630,19 @@ h4 {
   opacity: 0.18;
 }
 
+.privacy-page-hero::before {
+  background-image:
+    linear-gradient(90deg, rgba(10, 22, 40, 0.93) 0%, rgba(10, 22, 40, 0.82) 44%, rgba(10, 22, 40, 0.62) 100%),
+    url("../../media/pexels-vito-gorican-10954628-10628032.jpg");
+}
+
+.terms-page-hero::before {
+  background:
+    linear-gradient(90deg, rgba(10, 22, 40, 0.92) 0%, rgba(10, 22, 40, 0.8) 42%, rgba(10, 22, 40, 0.62) 100%),
+    url("../../media/pexels-jakubzerdzicki-35638668.jpg") center right / cover no-repeat;
+  opacity: 0.18;
+}
+
 .page-hero-grid {
   position: relative;
   z-index: 1;
@@ -1526,6 +1539,81 @@ h4 {
   color: var(--color-gold);
 }
 
+.legal-layout {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.legal-sidebar {
+  display: grid;
+  gap: 1.25rem;
+  align-content: start;
+}
+
+.legal-summary-card {
+  gap: 1rem;
+}
+
+.legal-summary-card p:last-child,
+.legal-content-card > :last-child,
+.legal-section > :last-child,
+.legal-meta > :last-child {
+  margin-bottom: 0;
+}
+
+.legal-meta {
+  display: grid;
+  gap: 0.45rem;
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 0.92rem;
+}
+
+.legal-content-card {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.legal-section {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.legal-section + .legal-section {
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(10, 22, 40, 0.08);
+}
+
+.legal-section h2 {
+  margin-bottom: 0;
+  color: var(--color-navy);
+  font-size: 1.3rem;
+  line-height: 1.25;
+}
+
+.legal-section p {
+  margin-bottom: 0;
+}
+
+.legal-list {
+  display: grid;
+  gap: 0.7rem;
+  margin: 0;
+  padding-left: 1.15rem;
+  color: rgba(10, 22, 40, 0.78);
+}
+
+.legal-list li {
+  padding-left: 0.2rem;
+}
+
+.legal-card-title {
+  margin-bottom: 1rem;
+}
+
+.legal-contact-card .contact-list {
+  margin-bottom: 0;
+}
+
 .form-grid {
   display: grid;
   gap: 1rem;
@@ -1799,6 +1887,19 @@ h4 {
   color: rgba(10, 22, 40, 0.54);
   font-size: 0.85rem;
   line-height: 1.5;
+}
+
+.footer-utility-links {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1rem;
+}
+
+.footer-utility-links a {
+  display: inline-flex;
+  align-items: center;
+  color: rgba(10, 22, 40, 0.68);
+  font-weight: 500;
 }
 
 .reveal {
@@ -2119,6 +2220,11 @@ h4 {
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
+  }
+
+  .legal-layout {
+    grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+    align-items: start;
   }
 
   .product-strip.reverse .product-media {
