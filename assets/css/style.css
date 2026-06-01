@@ -1095,6 +1095,39 @@ h4 {
   width: fit-content;
 }
 
+.parent-banner-media {
+  display: block;
+  width: 100%;
+  max-width: 26rem;
+  justify-self: end;
+  border-radius: calc(var(--radius-md) + 2px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.06);
+  padding: 0.85rem;
+  box-shadow: 0 22px 48px rgba(6, 14, 28, 0.35);
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+}
+
+.parent-banner-media img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  height: auto;
+  object-fit: contain;
+  border-radius: var(--radius-md);
+  background: #ffffff;
+}
+
+.parent-banner-media:hover {
+  transform: translateY(-2px);
+  border-color: rgba(201, 162, 39, 0.28);
+  box-shadow: 0 28px 60px rgba(6, 14, 28, 0.42);
+}
+
+.parent-banner-media:focus-visible {
+  outline: 3px solid rgba(201, 162, 39, 0.65);
+  outline-offset: 4px;
+}
+
 .product-strip {
   padding: 1.25rem 0;
 }
@@ -2072,6 +2105,14 @@ h4 {
   .whatsapp-float {
     right: 1.25rem;
     bottom: 1.25rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .parent-banner-media {
+    justify-self: center;
+    max-width: 22rem;
+    padding: 0.75rem;
   }
 }
 
