@@ -1097,8 +1097,8 @@ h4 {
 
 .parent-banner-media {
   display: block;
-  width: min(100%, calc(26rem * 0.85));
-  max-width: calc(26rem * 0.85);
+  width: min(100%, calc(26rem * 0.765));
+  max-width: calc(26rem * 0.765);
   aspect-ratio: 1 / 1;
   justify-self: end;
   border-radius: 50%;
@@ -2114,8 +2114,8 @@ h4 {
 @media (max-width: 767px) {
   .parent-banner-media {
     justify-self: center;
-    width: min(100%, calc(22rem * 0.85));
-    max-width: calc(22rem * 0.85);
+    width: min(100%, calc(22rem * 0.765));
+    max-width: calc(22rem * 0.765);
   }
 }
 
