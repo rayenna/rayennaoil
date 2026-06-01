@@ -1097,30 +1097,33 @@ h4 {
 
 .parent-banner-media {
   display: block;
-  width: 100%;
-  max-width: 26rem;
+  width: min(100%, calc(26rem * 0.85));
+  max-width: calc(26rem * 0.85);
+  aspect-ratio: 1 / 1;
   justify-self: end;
-  border-radius: calc(var(--radius-md) + 2px);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  background: rgba(255, 255, 255, 0.06);
-  padding: 0.85rem;
-  box-shadow: 0 22px 48px rgba(6, 14, 28, 0.35);
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid rgba(201, 162, 39, 0.32);
+  background: transparent;
+  padding: 0;
+  box-shadow: 0 18px 42px rgba(6, 14, 28, 0.38);
   transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
 }
 
 .parent-banner-media img {
   width: 100%;
-  aspect-ratio: 1 / 1;
-  height: auto;
-  object-fit: contain;
-  border-radius: var(--radius-md);
-  background: #ffffff;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 0;
+  background: transparent;
+  transform: scale(1.08);
 }
 
 .parent-banner-media:hover {
   transform: translateY(-2px);
-  border-color: rgba(201, 162, 39, 0.28);
-  box-shadow: 0 28px 60px rgba(6, 14, 28, 0.42);
+  border-color: rgba(201, 162, 39, 0.5);
+  box-shadow: 0 24px 52px rgba(6, 14, 28, 0.45);
 }
 
 .parent-banner-media:focus-visible {
@@ -2111,8 +2114,8 @@ h4 {
 @media (max-width: 767px) {
   .parent-banner-media {
     justify-self: center;
-    max-width: 22rem;
-    padding: 0.75rem;
+    width: min(100%, calc(22rem * 0.85));
+    max-width: calc(22rem * 0.85);
   }
 }
 
