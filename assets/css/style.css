@@ -1084,19 +1084,31 @@ h4 {
   box-shadow: 0 14px 34px rgba(6, 14, 28, 0.06);
 }
 
-.parent-banner {
+.parent-company-section {
   position: relative;
   overflow: hidden;
-  background:
-    linear-gradient(135deg, rgba(10, 22, 40, 0.98), rgba(19, 39, 70, 0.94));
+  isolation: isolate;
+  background: var(--color-navy);
+}
+
+.parent-company-inner {
+  position: relative;
+  z-index: 1;
+}
+
+.parent-banner {
+  position: relative;
+  overflow: visible;
+  background: transparent;
   color: var(--color-white);
-  border: 1px solid rgba(201, 162, 39, 0.18);
+  border: 0;
+  box-shadow: none;
 }
 
 .parent-banner--video {
   isolation: isolate;
   min-height: 18rem;
-  padding: clamp(1.5rem, 3vw, 2.1rem);
+  padding: 0;
 }
 
 .parent-banner-video,
@@ -1108,7 +1120,6 @@ h4 {
 
 .parent-banner-video {
   overflow: hidden;
-  border-radius: inherit;
 }
 
 .parent-banner-video-el {
@@ -1123,16 +1134,15 @@ h4 {
   background:
     linear-gradient(
       105deg,
-      rgba(6, 14, 28, 0.82) 0%,
-      rgba(10, 22, 40, 0.72) 42%,
-      rgba(10, 22, 40, 0.48) 100%
+      rgba(6, 14, 28, 0.78) 0%,
+      rgba(10, 22, 40, 0.62) 45%,
+      rgba(10, 22, 40, 0.42) 100%
     );
   pointer-events: none;
 }
 
 .parent-banner-copy,
-.parent-banner-media,
-.parent-banner-sound {
+.parent-banner-media {
   position: relative;
   z-index: 1;
 }
@@ -2200,8 +2210,8 @@ h4 {
 }
 
 @media (max-width: 767px) {
-  .parent-banner--video {
-    padding-bottom: 4.25rem;
+  .parent-company-section {
+    padding-bottom: 4.75rem;
   }
 
   .parent-banner-media {

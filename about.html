@@ -331,23 +331,23 @@
         </div>
       </section>
 
-      <section class="section section-dark">
-        <div class="container">
+      <section class="section section-dark parent-company-section">
+        <div class="parent-banner-video" aria-hidden="true">
+          <video
+            class="parent-banner-video-el"
+            data-parent-video
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+          >
+            <source src="media/videos/corporate.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <div class="parent-banner-overlay" aria-hidden="true"></div>
+        <div class="container parent-company-inner">
           <div class="parent-banner parent-banner--video reveal">
-            <div class="parent-banner-video" aria-hidden="true">
-              <video
-                class="parent-banner-video-el"
-                data-parent-video
-                autoplay
-                muted
-                loop
-                playsinline
-                preload="metadata"
-              >
-                <source src="media/videos/corporate.mp4" type="video/mp4" />
-              </video>
-            </div>
-            <div class="parent-banner-overlay" aria-hidden="true"></div>
             <div class="parent-banner-copy">
               <span class="eyebrow">Parent Company</span>
               <h2>A Division of Rayenna Energy</h2>
@@ -372,20 +372,20 @@
                 height="1024"
               />
             </a>
-            <button
-              type="button"
-              class="parent-banner-sound"
-              data-parent-sound
-              aria-pressed="false"
-              aria-label="Unmute"
-              data-label-unmute="Unmute"
-              data-label-mute="Mute"
-            >
-              <i class="fa-solid fa-volume-xmark" aria-hidden="true" data-sound-icon></i>
-              <span data-sound-label>Unmute</span>
-            </button>
           </div>
         </div>
+        <button
+          type="button"
+          class="parent-banner-sound"
+          data-parent-sound
+          aria-pressed="false"
+          aria-label="Unmute"
+          data-label-unmute="Unmute"
+          data-label-mute="Mute"
+        >
+          <i class="fa-solid fa-volume-xmark" aria-hidden="true" data-sound-icon></i>
+          <span data-sound-label>Unmute</span>
+        </button>
       </section>
     </main>
 
