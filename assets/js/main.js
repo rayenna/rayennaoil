@@ -246,6 +246,55 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+  const parentVideo = document.querySelector("[data-parent-video]");
+  const parentSoundButton = document.querySelector("[data-parent-sound]");
+
+  function syncParentSoundButton() {
+    if (!parentVideo || !parentSoundButton) {
+      return;
+    }
+
+    const isMuted = parentVideo.muted;
+    const label = isMuted
+      ? parentSoundButton.dataset.labelUnmute || "Unmute"
+      : parentSoundButton.dataset.labelMute || "Mute";
+    const icon = parentSoundButton.querySelector("[data-sound-icon]");
+    const labelNode = parentSoundButton.querySelector("[data-sound-label]");
+
+    parentSoundButton.setAttribute("aria-pressed", String(!isMuted));
+    parentSoundButton.setAttribute("aria-label", label);
+
+    if (labelNode) {
+      labelNode.textContent = label;
+    }
+
+    if (icon) {
+      icon.classList.toggle("fa-volume-xmark", isMuted);
+      icon.classList.toggle("fa-volume-high", !isMuted);
+    }
+  }
+
+  if (parentVideo) {
+    parentVideo.muted = true;
+    const playPromise = parentVideo.play();
+    if (playPromise && typeof playPromise.catch === "function") {
+      playPromise.catch(function () {
+        // Autoplay can be blocked on some browsers; keep muted fallback ready.
+      });
+    }
+  }
+
+  if (parentVideo && parentSoundButton) {
+    syncParentSoundButton();
+    parentSoundButton.addEventListener("click", function () {
+      parentVideo.muted = !parentVideo.muted;
+      if (!parentVideo.muted && parentVideo.paused) {
+        parentVideo.play().catch(function () {});
+      }
+      syncParentSoundButton();
+    });
+  }
+
   setActiveNavLink();
   updateHeaderState();
   window.addEventListener("scroll", updateHeaderState, { passive: true });
